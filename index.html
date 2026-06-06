@@ -1644,6 +1644,321 @@
       opacity: 0;
       transform: scale(0.94);
     }
+
+    /* ═══ NEW ANIMATIONS & POLISH ═══ */
+
+    /* Typed cursor blink on hero name */
+    @keyframes typedBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* Shimmer sweep on cards */
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) skewX(-12deg); }
+      100% { transform: translateX(220%) skewX(-12deg); }
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(10,132,255,0.06) 50%, transparent 100%);
+      transform: translateX(-100%) skewX(-12deg);
+      z-index: 0;
+      pointer-events: none;
+      border-radius: 24px;
+    }
+    .project-card:hover::before {
+      animation: shimmer 0.75s ease forwards;
+    }
+
+    /* Netflix card red shimmer */
+    #netflix-portfolio-card::before {
+      background: linear-gradient(90deg, transparent 0%, rgba(229,9,20,0.08) 50%, transparent 100%);
+    }
+    #netflix-portfolio-card .project-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    #netflix-portfolio-card .project-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(229,9,20,0.03) 2px,
+        rgba(229,9,20,0.03) 4px
+      );
+      pointer-events: none;
+    }
+
+    /* Staggered letter animation on section titles */
+    .section-title .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Floating badge glow */
+    .hero-badge {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-badge::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(10,132,255,0.12), transparent);
+      transform: translateX(-100%);
+      animation: badgeSweep 3s ease-in-out infinite 1.5s;
+    }
+    @keyframes badgeSweep {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+
+    /* Magnetic tilt on info cards */
+    .info-card {
+      transform-style: preserve-3d;
+      perspective: 600px;
+    }
+
+    /* Skill tag wave on group hover */
+    .skill-group:hover .skill-tag {
+      animation: tagWave 0.4s ease both;
+    }
+    .skill-group:hover .skill-tag:nth-child(1) { animation-delay: 0.00s; }
+    .skill-group:hover .skill-tag:nth-child(2) { animation-delay: 0.03s; }
+    .skill-group:hover .skill-tag:nth-child(3) { animation-delay: 0.06s; }
+    .skill-group:hover .skill-tag:nth-child(4) { animation-delay: 0.09s; }
+    .skill-group:hover .skill-tag:nth-child(5) { animation-delay: 0.12s; }
+    .skill-group:hover .skill-tag:nth-child(6) { animation-delay: 0.15s; }
+    .skill-group:hover .skill-tag:nth-child(7) { animation-delay: 0.18s; }
+    @keyframes tagWave {
+      0% { transform: translateY(0); }
+      40% { transform: translateY(-4px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Timeline item left-bar reveal */
+    .timeline-item {
+      overflow: hidden;
+    }
+    .timeline-item-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue), transparent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      border-radius: 2px;
+    }
+    .timeline-item.anim-in .timeline-item-bar {
+      transform: scaleY(1);
+    }
+
+    /* Scroll progress glow pulse */
+    #scrollProgress {
+      box-shadow: 0 0 10px rgba(10,132,255,0.6), 0 0 20px rgba(10,132,255,0.2);
+    }
+
+    /* CTA card grid lines */
+    .cta-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(10,132,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,132,255,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    /* Hero name hover underline sweep */
+    .hero-name em {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-name em::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .hero-name em:hover::after {
+      width: 100%;
+    }
+
+    /* Nav logo reveal on hover */
+    .nav-logo {
+      transition: letter-spacing 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .nav-logo:hover {
+      letter-spacing: 0.1em;
+    }
+
+    /* Button ripple */
+    .btn {
+      isolation: isolate;
+    }
+    .btn .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      transform: scale(0);
+      animation: btnRipple 0.55s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes btnRipple {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* About card tilt */
+    .about-main {
+      transform-style: preserve-3d;
+      perspective: 800px;
+    }
+
+    /* Back-to-top pulse ring */
+    .back-to-top::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--blue);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .back-to-top:hover::before {
+      opacity: 0.4;
+      transform: scale(1.1);
+    }
+
+    /* Contact link left accent */
+    .contact-link {
+      border-left: 3px solid transparent;
+      transition: border-left-color 0.22s, all 0.22s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .contact-link:hover {
+      border-left-color: var(--blue);
+    }
+
+    /* Project card image-like top gradient accent */
+    .project-visual {
+      transition: filter 0.3s;
+    }
+    .project-card:hover .project-visual {
+      filter: brightness(1.05);
+    }
+
+    /* Floating ambient dots on hero */
+    .hero-ambient {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .hero-ambient span {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(10,132,255,0.3);
+      animation: ambientFloat linear infinite;
+    }
+    @keyframes ambientFloat {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+    }
+
+    /* Section tag animated line */
+    .section-tag::before {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .section-tag.anim-in::before {
+      transform: scaleX(1);
+    }
+
+    /* Staggered skill-group entrance */
+    .skill-group {
+      position: relative;
+    }
+    .skill-group::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 1px solid rgba(10,132,255,0);
+      transition: border-color 0.4s;
+      pointer-events: none;
+    }
+    .skill-group:hover::after {
+      border-color: rgba(10,132,255,0.15);
+    }
+
+    /* "Upcoming" badge pulse */
+    .timeline-badge {
+      animation: upcomingPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes upcomingPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(10,132,255,0.3); }
+      50% { box-shadow: 0 0 0 6px rgba(10,132,255,0); }
+    }
+
+    /* Exploration label animated dash */
+    .explorations-label {
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .explorations-label:hover {
+      opacity: 1;
+    }
+
+    /* Dark mode specific shimmer */
+    [data-theme="dark"] .project-card::before {
+      background: linear-gradient(90deg, transparent 0%, rgba(10,132,255,0.04) 50%, transparent 100%);
+    }
+
+    /* Footer link hover underline */
+    .footer-links a {
+      position: relative;
+    }
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--blue);
+      transition: width 0.25s cubic-bezier(0.22,1,0.36,1);
+    }
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Word mask reveal for hero name */
+    .word-reveal {
+      overflow: hidden;
+      display: block;
+    }
+    .word-reveal-inner {
+      display: block;
+      will-change: transform;
+    }
+
   </style>
 </head>
 
@@ -1680,6 +1995,7 @@
 
     <!-- HERO -->
     <section class="hero" id="home">
+      <div class="hero-ambient" id="heroAmbient"></div>
       <div>
         <div class="hero-badge" id="heroBadge">
           <span>Final Year · La Trobe University</span>
@@ -2200,10 +2516,7 @@
             <div class="project-type">Spatial · Data Engineering</div>
             <div class="project-name">Melbourne Transport GIS</div>
             <div class="project-desc">
-              Spatial visualisation of Melbourne's public transport network for Public Transport Victoria (PTV).
-              Integrated GTFS datasets into PostGIS with Python data pipelines, built performance-optimised spatial
-              queries, and rendered interactive maps and heat maps in QGIS turning raw open data into actionable
-              geographic insight using Docker and DBeaver.
+              Interactive spatial visualisation platform built using Melbourne's PTV GTFS open datasets. Engineered Python ETL pipelines into PostGIS, designed optimised geospatial queries, and rendered transport routes, congestion zones, and stop-density heat maps in QGIS. Dockerised the workflow for reproducible local deployment and database management through DBeaver.
             </div>
             <div class="project-tech">
               <span class="tech-tag">PostGIS</span>
@@ -2250,6 +2563,40 @@
             <div class="project-links">
               <a href="https://www.figma.com/design/Lihp6prrHgnpe6gAZvwkSe/Untitled?node-id=0-1&t=m2nfg8C9jPASDWeP-1"
                 class="proj-link proj-link-ghost" target="_blank" rel="noreferrer noopener">Figma</a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="project-card g-fadeup" id="netflix-portfolio-card">
+          <div class="project-visual" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 60%, #0d0505 100%);">
+            <div class="project-visual-inner">
+              <div class="project-visual-icon" style="background: linear-gradient(135deg, #E50914 0%, #b30710 100%); box-shadow: 0 8px 24px rgba(229,9,20,0.45);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="3"/>
+                  <path d="M8 2v20M8 12h8"/>
+                  <path d="M16 2l-4 10 4 10"/>
+                </svg>
+              </div>
+              <div class="project-visual-label" style="color: #E50914;">Netflix Theme · Portfolio</div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-type">UI/UX Design · Web Development · Personal Brand</div>
+            <div class="project-name">Netflix-Style Portfolio — v1</div>
+            <div class="project-desc">
+              A fully custom Netflix-themed developer portfolio — dark interface, red accent system, animated hero with a glitch-effect name, particle field, custom cursor, scroll-triggered reveals, and a horizontal skill card row. Designed and implemented entirely from scratch, deployed on Netlify.
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3 (custom animations)</span>
+              <span class="tech-tag">Vanilla JavaScript</span>
+              <span class="tech-tag">Canvas API</span>
+              <span class="tech-tag">IntersectionObserver</span>
+              <span class="tech-tag">Netlify</span>
+            </div>
+            <div class="project-links">
+              <a href="https://tanvirepo.netlify.app" class="proj-link proj-link-primary" target="_blank" rel="noreferrer noopener">View Live →</a>
             </div>
           </div>
         </div>
