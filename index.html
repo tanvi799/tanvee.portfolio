@@ -150,6 +150,12 @@
       justify-content: space-between;
     }
 
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     .nav-logo {
       font-size: 20px;
       font-weight: 600;
@@ -234,7 +240,7 @@
     }
 
     .hero {
-      padding: 10px 0 96px;
+      padding: 10px 0 56px;
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 64px;
@@ -1266,7 +1272,13 @@
 
   <nav id="mainNav">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo">T'nvi</a>
+      <div class="nav-brand">
+        <a href="#home" class="nav-logo">T'nvi</a>
+        <button class="theme-toggle game-mode-toggle" id="gameModeToggle" type="button" aria-label="Open Snake Game Mode" aria-pressed="false" aria-expanded="false">
+          <span class="game-mode-toggle-dot" aria-hidden="true"></span>
+          <span>Game Mode</span>
+        </button>
+      </div>
       <div class="nav-actions">
         <ul class="nav-links" id="navLinks">
           <li><a href="#about" data-section="about">About</a></li>
@@ -2044,6 +2056,7 @@
       a.addEventListener('mouseleave', () => gsap.to(a, { x: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' }));
     });
   </script>
+  <script type="module" src="/src/game/snakeGameMode.ts"></script>
   <script>window.addEventListener('beforeunload', () => window.scrollTo(0, 0));</script>
 </body>
 </html>

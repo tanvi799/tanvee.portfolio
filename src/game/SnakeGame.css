@@ -1,0 +1,222 @@
+.game-mode-toggle {
+  width: auto;
+  min-width: 104px;
+  padding: 0 14px;
+  gap: 7px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.game-mode-toggle[aria-pressed="true"] {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(10, 132, 255, 0.3);
+}
+
+.game-mode-toggle-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.snake-page-active .page,
+.snake-page-active nav,
+.snake-page-active footer {
+  transition: filter 0.22s ease, opacity 0.22s ease;
+}
+
+.snake-page-game-over .page,
+.snake-page-game-over nav,
+.snake-page-game-over footer {
+  filter: blur(2px);
+  opacity: 0.72;
+}
+
+.snake-page-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 320;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.snake-page-layer.is-active {
+  opacity: 1;
+}
+
+.snake-score-badge,
+.snake-mode-indicator {
+  position: fixed;
+  z-index: 330;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.snake-score-badge.is-active,
+.snake-mode-indicator.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.snake-score-badge {
+  left: 22px;
+  bottom: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--white) 88%, transparent);
+  color: var(--black);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+.snake-score-badge span:first-child {
+  color: var(--gray-400);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.snake-score-badge span:last-child {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.snake-mode-indicator {
+  right: 22px;
+  bottom: 22px;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--blue-mid);
+  border-radius: 999px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.snake-game-over-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 360;
+  width: min(92vw, 390px);
+  padding: 28px;
+  border: 1px solid var(--gray-200);
+  border-radius: 22px;
+  background: var(--surface, var(--white));
+  color: var(--black);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.2), 0 10px 32px rgba(10, 132, 255, 0.12);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -46%) scale(0.96);
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.snake-game-over-popup.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.snake-popup-kicker {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.snake-game-over-popup h2 {
+  color: var(--black);
+  font-size: clamp(2rem, 8vw, 2.7rem);
+  line-height: 1;
+  letter-spacing: 0;
+  margin-bottom: 12px;
+}
+
+.snake-popup-score {
+  color: var(--gray-600);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.snake-popup-help {
+  color: var(--gray-400);
+  font-size: 13px;
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.snake-popup-button {
+  min-height: 42px;
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  padding: 0 22px;
+  background: var(--blue);
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 5px 18px rgba(10, 132, 255, 0.28);
+  transition: transform 0.18s, background 0.18s, box-shadow 0.18s;
+}
+
+.snake-popup-button:hover,
+.snake-popup-button:focus-visible {
+  background: #0071e3;
+  box-shadow: 0 8px 26px rgba(10, 132, 255, 0.38);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 860px) {
+  .game-mode-toggle {
+    min-width: 0;
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .game-mode-toggle {
+    height: 38px;
+    font-size: 0;
+  }
+
+  .game-mode-toggle::after {
+    content: 'Game';
+    font-size: 11px;
+  }
+
+  .snake-score-badge {
+    left: 14px;
+    bottom: 14px;
+  }
+
+  .snake-mode-indicator {
+    right: 14px;
+    bottom: 14px;
+  }
+}
